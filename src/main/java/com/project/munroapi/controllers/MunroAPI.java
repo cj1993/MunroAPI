@@ -1,10 +1,15 @@
 package com.project.munroapi.controllers;
 
+import com.project.munroapi.csv.ParseCSV;
+import com.project.munroapi.helpers.Mapping;
 import com.project.munroapi.helpers.Validation;
+import com.project.munroapi.model.Munro;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class MunroAPI {
@@ -19,6 +24,13 @@ public class MunroAPI {
 
         if (!Validation.paramsValid(hill, height, alpha, min, max, limit)) return Validation.errorResponse();
 
-        return ResponseEntity.ok("Hello world");
+        Mapping mappingTool = new Mapping();
+
+        List<Munro> munroData = new ParseCSV().getMunroData();
+        List<Munro> munroDataClone = mappingTool.createMunroDataClone(munroData);
+
+        List<Munro> munroDataSorted = mappingTool.handleSorting(munroDataClone, height, alpha);
+
+        return ResponseEntity.ok(mappingTool.handleFiltering(munroDataSorted, hill, min, max, limit));
     }
 }

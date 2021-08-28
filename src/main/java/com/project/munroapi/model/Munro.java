@@ -2,7 +2,7 @@ package com.project.munroapi.model;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class Munro {
+public class Munro implements Cloneable {
 
     @CsvBindByName(column = "Running No")
     private String runningNo;
@@ -332,5 +332,15 @@ public class Munro {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public Munro clone() {
+        try {
+            return (Munro) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
