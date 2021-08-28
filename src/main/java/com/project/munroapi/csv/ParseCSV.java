@@ -6,14 +6,26 @@ import java.util.List;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.project.munroapi.model.Munro;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
-public class ParseCSV {
+@Component
+public class ParseCSV implements CommandLineRunner {
 
     private static List<Munro> munroData;
 
-    public void init() {
+    @Value("${csv.file.location}")
+    private String csvFileLocation;
+
+    @Override
+    public void run(String... args) {
+        init();
+    }
+
+    private void init() {
         try {
-            List<Munro> munros = new CsvToBeanBuilder<Munro>(new FileReader("./munrotab_v6.2.csv"))
+            List<Munro> munros = new CsvToBeanBuilder<Munro>(new FileReader(csvFileLocation))
                     .withType(Munro.class)
                     .build()
                     .parse();
