@@ -1,8 +1,9 @@
 package com.project.munroapi.controllers;
 
-import com.project.munroapi.csv.ParseCSV;
-import com.project.munroapi.helpers.Mapping;
-import com.project.munroapi.helpers.Validation;
+import com.project.munroapi.constants.Constants;
+import com.project.munroapi.parser.ParseCSV;
+import com.project.munroapi.utils.Mapping;
+import com.project.munroapi.utils.Validation;
 import com.project.munroapi.model.Munro;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 public class MunroAPI {
-    @GetMapping("/munro-data")
+    @GetMapping(Constants.MUNROS_ENDPOINT)
     public ResponseEntity<Object> getMunro(
             @RequestParam(required = false) String hill,
             @RequestParam(required = false) String height,

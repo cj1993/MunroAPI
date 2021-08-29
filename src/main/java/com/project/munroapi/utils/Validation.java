@@ -1,5 +1,6 @@
-package com.project.munroapi.helpers;
+package com.project.munroapi.utils;
 
+import com.project.munroapi.constants.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class Validation {
     }
 
     public static ResponseEntity<Object> errorResponse() {
-        errorResponse.put("HTTP Status", HttpStatus.BAD_REQUEST.toString());
+        errorResponse.put(Constants.HTTP_STATUS, HttpStatus.BAD_REQUEST.toString());
         errorResponse.put(Constants.PARAM_ERROR_KEY, errorListBuilder(errorList));
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
@@ -44,9 +45,7 @@ public class Validation {
     private static String errorListBuilder(List<String> errors) {
         StringBuilder errorString = new StringBuilder();
 
-        for (String error : errors) {
-            errorString.append(error).append(", ");
-        }
+        errors.forEach(error -> errorString.append(error).append(", "));
 
         return errorString.substring(0, errorString.length() - 2);
     }

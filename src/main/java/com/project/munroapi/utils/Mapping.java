@@ -1,5 +1,6 @@
-package com.project.munroapi.helpers;
+package com.project.munroapi.utils;
 
+import com.project.munroapi.constants.Constants;
 import com.project.munroapi.model.Munro;
 import com.project.munroapi.model.MunroResponse;
 
@@ -27,14 +28,12 @@ public class Mapping {
 
     private void sortOnHeight(List<Munro> data, String height) {
         if (height.equalsIgnoreCase(Constants.ASC)) data.sort(Comparator.comparing(Munro::getHeightMeters));
-        if (height.equalsIgnoreCase(Constants.DESC))
-            data.sort(Comparator.comparing(Munro::getHeightMeters).reversed());
+        if (height.equalsIgnoreCase(Constants.DESC)) data.sort(Comparator.comparing(Munro::getHeightMeters).reversed());
     }
 
     private void sortOnAlpha(List<Munro> data, String alpha) {
         if (alpha.equalsIgnoreCase(Constants.ASC)) data.sort(Comparator.comparing(Munro::getName));
-        if (alpha.equalsIgnoreCase(Constants.DESC))
-            data.sort(Comparator.comparing(Munro::getName).reversed());
+        if (alpha.equalsIgnoreCase(Constants.DESC)) data.sort(Comparator.comparing(Munro::getName).reversed());
     }
 
     private void filterOnHillCategory(List<Munro> munroData, String hillCategory) {

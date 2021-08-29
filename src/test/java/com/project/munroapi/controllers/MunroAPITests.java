@@ -1,8 +1,8 @@
 package com.project.munroapi.controllers;
 
-import com.project.munroapi.csv.ParseCSV;
-import com.project.munroapi.helpers.Constants;
-import com.project.munroapi.helpers.Data;
+import com.project.munroapi.parser.ParseCSV;
+import com.project.munroapi.constants.Constants;
+import com.project.munroapi.utils.Data;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -22,9 +22,6 @@ public class MunroAPITests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private static final String API_ENDPOINT = "/munro-data";
-
     private ParseCSV parseCSV;
 
     @BeforeAll
@@ -35,7 +32,7 @@ public class MunroAPITests {
 
     @Test
     void testMunroDataEndPoint() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(API_ENDPOINT))
+        mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(5)))
                 .andExpect(jsonPath("$[0].munroName", is(parseCSV.getMunroData().get(0).getName())))
@@ -47,7 +44,7 @@ public class MunroAPITests {
 
     @Test
     void testMunroDataEndPointLimitParam() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(API_ENDPOINT)
+        mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("limit", "2")
                 )
                 .andExpect(status().isOk())
@@ -58,7 +55,7 @@ public class MunroAPITests {
 
     @Test
     void testMunroDataEndPointHillParam() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(API_ENDPOINT)
+        mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("hill", "TOP")
                 )
                 .andExpect(status().isOk())
@@ -71,7 +68,7 @@ public class MunroAPITests {
 
     @Test
     void testMunroDataEndPointLimitAndSortAlphaParam() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(API_ENDPOINT)
+        mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("limit", "3")
                         .param("alpha", "ASC")
                 )
@@ -84,7 +81,7 @@ public class MunroAPITests {
 
     @Test
     void testMunroDataEndPointMinParam() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(API_ENDPOINT)
+        mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("min", "1000")
                 )
                 .andExpect(status().isOk())
@@ -96,7 +93,7 @@ public class MunroAPITests {
 
     @Test
     void testMunroDataEndPointMinAndMaxAndHeightParam() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(API_ENDPOINT)
+        mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("min", "900")
                         .param("max", "1000")
                         .param("height", "DESC")

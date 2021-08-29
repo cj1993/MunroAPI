@@ -1,4 +1,4 @@
-package com.project.munroapi.csv;
+package com.project.munroapi.parser;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -41,7 +41,7 @@ public class ParseCSV implements CommandLineRunner {
         munros.removeIf(munro -> (munro.getRunningNo().isEmpty() || munro.getPost1997().isEmpty()));
     }
 
-    private void setMunroData(List<Munro> munros) {
+    public void setMunroData(List<Munro> munros) {
         ParseCSV.munroData = munros;
     }
 

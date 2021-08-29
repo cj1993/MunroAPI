@@ -1,4 +1,4 @@
-package com.project.munroapi.helpers;
+package com.project.munroapi.constants;
 
 public class Constants {
 
@@ -33,4 +33,8 @@ public class Constants {
     public static final String ALPHA_ASC_DESC_ERROR = "Value for alpha must be either ASC or DESC";
 
     public static final String LIMIT_INTEGER_ERROR = "Value for limit must be Integer";
+
+    public static final String MUNROS_ENDPOINT = "/munros";
+
+    public static final String HTTP_STATUS = "HTTP Status";
 }
