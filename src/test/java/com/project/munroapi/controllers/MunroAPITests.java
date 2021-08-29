@@ -31,7 +31,7 @@ public class MunroAPITests {
     }
 
     @Test
-    void testMunroDataEndPoint() throws Exception {
+    void testMunroAPIGet() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(5)))
@@ -43,7 +43,7 @@ public class MunroAPITests {
     }
 
     @Test
-    void testMunroDataEndPointLimitParam() throws Exception {
+    void testMunroAPIGetWithLimitParam() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("limit", "2")
                 )
@@ -54,7 +54,7 @@ public class MunroAPITests {
     }
 
     @Test
-    void testMunroDataEndPointHillParam() throws Exception {
+    void testMunroAPIGetWithHillParam() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("hill", "TOP")
                 )
@@ -67,7 +67,7 @@ public class MunroAPITests {
     }
 
     @Test
-    void testMunroDataEndPointLimitAndSortAlphaParam() throws Exception {
+    void testMunroAPIGetWithLimitAndAlphaParams() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("limit", "3")
                         .param("alpha", "ASC")
@@ -80,7 +80,7 @@ public class MunroAPITests {
     }
 
     @Test
-    void testMunroDataEndPointMinParam() throws Exception {
+    void testMunroAPIGetWithMinParam() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("min", "1000")
                 )
@@ -92,7 +92,7 @@ public class MunroAPITests {
     }
 
     @Test
-    void testMunroDataEndPointMinAndMaxAndHeightParam() throws Exception {
+    void testMunroAPIGetWithMinAndMaxAndHeightParams() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(Constants.MUNROS_ENDPOINT)
                         .param("min", "900")
                         .param("max", "1000")

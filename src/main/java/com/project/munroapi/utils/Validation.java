@@ -1,8 +1,11 @@
 package com.project.munroapi.utils;
 
 import com.project.munroapi.constants.Constants;
+import com.project.munroapi.parser.ParseCSV;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -12,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Validation {
+
+    private final static Logger logger = LogManager.getLogger(ParseCSV.class);
 
     private static Map<String, String> errorResponse;
     private static List<String> errorList;
@@ -34,6 +39,9 @@ public class Validation {
     public static ResponseEntity<Object> errorResponse() {
         errorResponse.put(Constants.HTTP_STATUS, HttpStatus.BAD_REQUEST.toString());
         errorResponse.put(Constants.PARAM_ERROR_KEY, errorListBuilder(errorList));
+
+        logger.info(errorResponse.get(Constants.HTTP_STATUS));
+        logger.info(errorResponse.get(Constants.PARAM_ERROR_KEY));
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }

@@ -5,6 +5,8 @@ import com.project.munroapi.parser.ParseCSV;
 import com.project.munroapi.utils.Mapping;
 import com.project.munroapi.utils.Validation;
 import com.project.munroapi.model.Munro;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +16,9 @@ import java.util.List;
 
 @RestController
 public class MunroAPI {
+
+    private final static Logger logger = LogManager.getLogger(MunroAPI.class);
+
     @GetMapping(Constants.MUNROS_ENDPOINT)
     public ResponseEntity<Object> getMunro(
             @RequestParam(required = false) String hill,
@@ -22,6 +27,8 @@ public class MunroAPI {
             @RequestParam(required = false) String min,
             @RequestParam(required = false) String max,
             @RequestParam(required = false) String limit) {
+
+        logger.info("Get request at " + Constants.MUNROS_ENDPOINT);
 
         if (!Validation.paramsValid(hill, height, alpha, min, max, limit)) return Validation.errorResponse();
 

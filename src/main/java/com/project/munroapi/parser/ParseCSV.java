@@ -2,16 +2,21 @@ package com.project.munroapi.parser;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.List;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.project.munroapi.model.Munro;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ParseCSV implements CommandLineRunner {
+
+    private final static Logger logger = LogManager.getLogger(ParseCSV.class);
 
     private static List<Munro> munroData;
 
@@ -33,7 +38,9 @@ public class ParseCSV implements CommandLineRunner {
             sanitiseMunroData(munros);
             setMunroData(munros);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error("CSV file not found " + csvFileLocation);
+            logger.error(Arrays.toString(e.getStackTrace()));
+            System.exit(0);
         }
     }
 
