@@ -2,6 +2,10 @@
 
 GET API returning CSV parsed Munro data with filtering & sorting functionality
 
+### AWS API deployment
+
+* http://ec2-3-141-200-56.us-east-2.compute.amazonaws.com:8080/munros
+
 ## Getting Started
 
 ### Dependencies
@@ -41,6 +45,8 @@ mvnw.cmd test
 
 API can be accessed at
 * http://localhost:8080/munros
+
+## Filtering and Sorting
 
 ### Filter on...
 
@@ -85,3 +91,8 @@ Run tests
 mvn test
 ```
 
+## Chrome JSON viewer
+
+#### A handy chrome tool for inspecting JSON data in a human friendly format
+
+* https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh
