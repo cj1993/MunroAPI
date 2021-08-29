@@ -24,6 +24,18 @@ GET API returning CSV parsed Munro data with filtering & sorting functionality
 mvnw.cmd spring-boot:run
 ```
 
+### Executing tests
+
+* Linux / Mac
+```
+./mvnw test
+```
+
+* Windows
+```
+mvnw.cmd test
+```
+
 
 ## Usage
 
@@ -57,3 +69,19 @@ API can be accessed at
 
 #### First 10 Munro TOP's sorted by height in descending order
 * http://localhost:8080/munros?hill=TOP&height=DESC&limit=10
+
+### MVN Wrapper
+
+If there are any issues running maven wrapper the application can be built and run using maven or by importing into an IDE.
+
+Run application
+```
+mvn clean compile exec:java
+```
+
+Run tests
+
+```
+mvn test
+```
+
