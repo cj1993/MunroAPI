@@ -28,7 +28,8 @@ public class MunroAPI {
             @RequestParam(required = false) String max,
             @RequestParam(required = false) String limit) {
 
-        logger.info("Get request at " + Constants.MUNROS_ENDPOINT);
+        logger.info("Get request at " + Constants.MUNROS_ENDPOINT + ". Params: Hill " + hill + " Height " + height +" Alpha " + alpha +
+                " Min " + min + " Max " + max + " Limit " + limit);
 
         if (!Validation.paramsValid(hill, height, alpha, min, max, limit)) return Validation.errorResponse();
 
